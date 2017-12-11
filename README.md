@@ -1,2 +1,24 @@
-# mysql-init-scripts
-Startup script for kubedb/mysql
+# Create MySQL database with startup script
+
+```yaml
+apiVersion: kubedb.com/v1alpha1
+kind: MySQL
+metadata:
+  name: m1
+  namespace: demo
+spec:
+  version: 8.0
+  doNotPause: true
+  storage:
+    storageClassName: "standard"
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 50Mi
+  init:
+    scriptSource:
+      gitRepo:
+        repository: "https://github.com/kubedb/mysql-init-scripts.git"
+        directory: .
+```
