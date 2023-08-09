@@ -33,11 +33,11 @@ spec:
       # "current" (see -dest below) which points to a checked-out copy of
       # the master branch (see -branch) of the repo (see -repo).
       # NOTE: git-sync already runs as non-root.
-      image: registry.k8s.io/git-sync/git-sync:v4.0.0
+      image: registry.k8s.io/git-sync/git-sync:v4.0.0-rc5
       args:
         - --repo=https://github.com/kubedb/mysql-init-scripts
         - --depth=1
-        - --period=60
+        - --period=60s
         - --link=current
         - --root=/git
       volumeMounts:
