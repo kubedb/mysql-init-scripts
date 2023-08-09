@@ -2,7 +2,7 @@ apiVersion: kubedb.com/v1alpha2
 kind: MySQL
 metadata:
   name: m1
-  namespace: default
+  namespace: demo
 spec:
   version: "8.0.32"
   storage:
@@ -14,6 +14,7 @@ spec:
         storage: 50Mi
   init:
     script:
+      scriptPath: current
       persistentVolumeClaim:
         claimName: mysql-scripts
   terminationPolicy: Delete

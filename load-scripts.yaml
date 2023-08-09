@@ -1,8 +1,13 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-scripts
-  namespace: default
+  namespace: demo
 spec:
   accessModes:
     - ReadWriteOnce
@@ -15,7 +20,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: load-scripts
-  namespace: default
+  namespace: demo
 spec:
   securityContext:
     # Set this to any valid GID, and two things happen:
