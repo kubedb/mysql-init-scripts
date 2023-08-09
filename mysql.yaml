@@ -1,0 +1,19 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MySQL
+metadata:
+  name: m1
+  namespace: default
+spec:
+  version: "8.0.32"
+  storage:
+    storageClassName: "standard"
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 50Mi
+  init:
+    script:
+      persistentVolumeClaim:
+        claimName: mysql-scripts
+  terminationPolicy: Delete

@@ -49,8 +49,12 @@ spec:
       # NOTE: apache runs as root to expose port 80, and there's not a
       # trivial flag to change that.  Real servers should not run as root
       # when possible.
-      image: httpd:alpine
+      image: alpine
+      command:
+        - /bin/sh
+        - -c
+        - "ls -l /data; sleep 3600"
       volumeMounts:
         - name: content-from-git
-          mountPath: /usr/local/apache2/htdocs/
+          mountPath: /git
           readOnly: true # no need to ever write to the volume
